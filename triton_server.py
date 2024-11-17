@@ -7,7 +7,7 @@ from tritonclient.http import InferenceServerClient
 # Define image https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver
 tag = "nvcr.io/nvidia/tritonserver:23.09-py3"  # 6.4 GB
 
-# Pull the image
+# Pull the image, only run once
 # subprocess.call(f"docker pull {tag}", shell=True)
 
 # Use absolute path for triton_repo_path
@@ -19,12 +19,16 @@ triton_model_path = absolute_triton_repo_path / model_name
 # Run the Triton server and capture the container ID
 container_id = (
     subprocess.check_output(
-        f"docker run --rm -v {absolute_triton_repo_path}:/models -p 8000:8000 {tag} tritonserver --model-repository=/models",
+        f"docker run --rm --gpus all -v {absolute_triton_repo_path}:/models "
+        f"-p 8000:8000 -p 8001:8001 {tag} "
+        f"tritonserver --model-repository=/models --http-port=8000 --grpc-port=8001",
         shell=True,
     )
     .decode("utf-8")
     .strip()
 )
+
+
 
 # Wait for the Triton server to start
 triton_client = InferenceServerClient(url="localhost:8000", verbose=False, ssl=False)
