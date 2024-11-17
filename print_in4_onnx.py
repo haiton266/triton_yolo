@@ -1,7 +1,8 @@
 import onnx
 
 # Load the ONNX model
-model = onnx.load("/home/hai/code/yolo_project/tmp/triton_repo/yolo/1/model.onnx")
+model = onnx.load("/home/hai/code/triton_yolo/tmp/triton_repo/yolo/1/model.onnx")
+
 
 # Retrieve input information
 input_info = [

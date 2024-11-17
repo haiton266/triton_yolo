@@ -8,13 +8,9 @@ This repository contains code and assets to deploy and test a YOLO (You Only Loo
   - **1/**
     - **model.onnx**: The YOLO model file in ONNX format, optimized for deployment with Triton.
     - **config.pbtxt**: Configuration file for the YOLO model, specifying input and output parameters for Triton.
-- **bus.jpg**: Example image file used for testing object detection.
-- **main.py**: Main script to set up and run the YOLO model.
+
 - **print_in4_onnx.py**: Script to print information about the ONNX model, useful for debugging and model inspection.
-- **test_client_triton.py**: Client script to connect to Triton Server and perform inference using the YOLO model.
-- **triton_server.py**: Script to configure and start Triton Server for serving the YOLO model.
-- **use_triton_without_ultralytics.py**: Script for using Triton with YOLO models without relying on the Ultralytics library.
-- **yolov8n.pt**: YOLO model file (in PyTorch format), which can be converted to ONNX if needed.
+- Another files have purpose as its name, `triton_client_grpc_postprocess.py` is developing
 
 ## Requirements
 
@@ -41,3 +37,5 @@ This repository contains code and assets to deploy and test a YOLO (You Only Loo
 
    - Run `print_in4_onnx.py` to check the details of the ONNX model.
    - Run `use_triton_without_ultralytics.py` if you prefer not to use the Ultralytics library.
+
+If we no define in config.pbtxt, Triton will auto define but we will not config the max_batchsize (default = 0)
