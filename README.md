@@ -28,7 +28,7 @@ This repository contains code and assets to deploy and test a YOLO (You Only Loo
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/triton_yolo.git
+   git clone https://github.com/haiton266/triton_yolo.git
    cd triton_yolo
    ```
 
